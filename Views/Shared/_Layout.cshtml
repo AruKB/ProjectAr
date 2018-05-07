@@ -34,6 +34,24 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
+            <div class="container">
+            <div class="navbar-header col-xs-3 pull-right topright">
+            <button type="button" class="navbar-toggle"
+            data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            @if (!(ViewContext.RouteData.Values["Controller"].ToString()=="LogReg"))
+            {
+            <a asp-area="" asp-controller="LogReg"
+            asp-action="Login" class="navbar-brand">Log in</a>
+            }
+            <a asp-area="" asp-controller="LogReg"
+            asp-action="Register" class="navbar-brand">Sign up</a>
+            </div>
+            </div>
             </div>
         </div>
     </nav>

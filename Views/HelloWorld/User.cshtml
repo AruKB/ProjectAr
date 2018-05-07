@@ -1,0 +1,27 @@
+
+@model project.Models.User;
+
+@{
+    ViewData["Title"] = "User";
+}
+
+<h1>User</h1>
+<p>
+    <div>
+        <thead>
+        Dannye
+        <ul>
+        My name is:
+        @Model.name
+        </ul>
+        <ul>
+         My surname is:
+        @Model.surname
+        </ul>
+        <ul>
+        Age:
+        @Model.age
+        </ul>
+        </thead>
+    </div>
+</p>

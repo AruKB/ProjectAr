@@ -4,8 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using project.Models;
+using project.EmpDataContext;
+using project.Data;
+
 
 namespace project
 {
@@ -22,10 +27,10 @@ namespace project
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<AppDataContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AppDataContext context)
         {
             if (env.IsDevelopment())
             {
@@ -44,6 +49,7 @@ namespace project
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            Dbinitializer.Initialize(context);
         }
     }
 }
